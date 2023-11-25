@@ -1,0 +1,11 @@
+<div class="confirm">
+    <div class="confirm__middle">
+        <div class="confirm__email"><span>{{email}}</span></div>
+        <div class="confirm__emailButtons">
+            <div class="confirm__emailButtons__emailSent" ng-show="emailSent" translate>Email sent</div>
+            <div class="confirm__emailButtons__resendEmail" ng-click="resendEmail()" translate>Resend email</div>
+        </div>
+        <div class="confirm__description" translate>Check your inbox to confirm it's you. Make sure to look into your spam and junk folders as well.</div>
+        <div class="confirm__wrongEmail" ng-click="cancelRegistration()" translate>I entered a wrong email</div>
+    </div>
+</div>

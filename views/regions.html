@@ -1,0 +1,31 @@
+<div>
+    <div id="search2" class="settings clearfix">
+        <div class="settings__left settings__quickSearch settings__quickSearch__text" style="display:table-cell;vertical-align:middle;padding-top:3px">
+            <div translate>Search</div>
+        </div>
+        <div class="settings__common settings__header clearfix">
+            <div class="settings__quickSearch__searchRectangle">
+                <i class="settings__quickSearch__leftIcon ionicons ion-ios-search"></i>
+                <input type="text" ng-model="query" ng-model-options="{ debounce: 200 }" ng-change="doSearch()" class="settings__quickSearch__textBox" maxlength=200>
+            </div>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <div id="reg-{{region.id}}" class="regions-switch" ng-class="{'selectedItem': region.id == selected.id, proRegion: (region.license_type == 'paid' && license.type != 'paid'), freeRegion: (region.license_type == 'free')}" ng-click="regionSelectionClicked(region)"
+                no-mouse-outline tabindex="10" ng-repeat="region in regions">
+                <div class="regions-radiobutton">
+                    <span class="radiobutton" ng-class="{'checked': region.id == selected.id}">
+                        <small></small>
+                    </span>
+                </div>
+                <div class="regions-flag">
+                    <img ng-src="images/png/regions/{{icons[region.id]}}.png" draggable="false">
+                </div>
+                <div class="regions-switch__text">{{ region.name }}</div>
+                <div class="select__pro" ng-hide="license.type == 'paid'"><span>Pro</span></div>
+            </div>
+        </div>
+    </div>
+</div>

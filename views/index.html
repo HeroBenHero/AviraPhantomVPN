@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app="phantom">
+    <head>
+        <title></title>
+        <link rel="stylesheet" type="text/css" href="css/vpn-vendor.css">
+        <link rel="stylesheet" type="text/css" href="css/vpn.css">
+    </head>
+
+    <body ng-controller="phantomCtrl" class ="guiFrame"
+        ng-class="{
+        'vpn-connected': connected === true,
+        'vpn-disconnected': connected === false}" ng-cloak>
+
+        <div id="header" class="header clearfix">
+            <div id="back" class="header__back" ng-show="currentView != 'mainView' && currentView != 'gdprView'">
+                <a href="#" draggable="false" ng-click="back()">
+                    <i class="icon ion-ios-arrow-back"></i>
+                </a>
+            </div>
+            <div  class="header__logo">
+                <img src="images/png/vpn.png" width="42" height="42" draggable="false"/>
+            </div>
+            <div class="header__logo-mark">Avira
+                <span class="header__sublogo">Phantom VPN</span>
+                <span id="textPro" class="header__sublogo__Pro" ng-show="license.type === 'paid'" ng-class="{'header__sublogo__Pro__show': license.type === 'paid'}">Pro</span>
+            </div>
+
+            <div class="header__controls" ng-show="currentView != 'gdprView'">
+                <div id="close" class="header__control header__close">
+                    <a href="#" ng-click="closeClicked()" draggable="false"><i class="icon icon-close"></i></a>
+                </div>
+                <div id="help_menu" class="header__control header__help_menu_dropdown">
+                    <a id="open_help_menu" href="#" draggable="false" ng-click="toggleHelpMenu()">
+                        <i id="open_help_menu_button" class="icon icon-help"></i>
+                    </a>
+                    <div id="open_help_menu_dropdown" class="open_help_menu_dropdown_content" ng-show="helpMenuVisible" tw-click-outside="hideHelpMenu()">
+                        <a id="send_feedback" href="#" draggable="false" ng-click="sendFeedbackClicked()" translate>Send feedback</a>
+                        <a id="show_support" href="#" draggable="false" ng-click="showSupportPageClicked()" translate>Get support</a>
+                    </div>
+                </div>
+                <div id="register-user" class="header__control header__account" ng-class="{'loggedin': loggedin && emailConfirmed}">
+                    <a href="#" draggable="false" ng-click="userProfile()">
+                        <i class="icon icon-user2"></i>
+                    </a>
+                </div>
+                <div id="upgrade" class="header__control" ng-show="license.type != 'paid'">
+                    <button class="upgradebutton" id="upgrade" ng-click="upgrade('Header')" translate>
+                        Upgrade
+                    </button>
+                </div>
+            </div>
+        </div>
+		
+        <div class="mainView" ng-show="currentView == 'mainView'">
+            <div class="location" >
+                <div class="location__privacy_message">{{privacyText}}</div>
+                <div class="location__location_message" style="display:table;margin:0 auto;">
+                    <div style="display:table-cell;vertical-align:middle;" translate>Your location is through</div>
+                    <div ng-click="regionSelectionView()" class="select">
+                        <div class="selected">
+                            <div class="selected__icon">
+                                <img ng-src="images/png/regions/{{icons[selected.id]}}.png" draggable="false" />
+                            </div>
+                            <div class="selected__text">
+                                <a>{{selected.name}}</a>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>        
+
+            <div id="status" class="vpn-status clearfix">
+                <div class="round-button">
+                    <div class="round-button-circle">
+                        <a id="toggle-connect" href="#" ng-click="toggleConnect()" draggable="false">{{connectButtonText}}</a>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        
+        <div login="" back="back" set-view="setView" ng-show="currentView == 'loginView'"></div>
+        <div confirm="" back="back" set-view="setView" ng-show="currentView == 'confirmView'"></div>
+        <div regview="" back="back" connect="onRegionSelected" upgrade="upgrade" ng-show="currentView == 'regionsView'"></div>
+        <div gdprview="" set-view="setView" ng-show="currentView == 'gdprView'"></div>
+		<script type="text/javascript" src="js/vpn.js" charset="utf-8"></script>
+    </body>
+</html>

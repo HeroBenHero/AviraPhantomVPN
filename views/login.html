@@ -1,0 +1,54 @@
+<form id="login-form" name="loginForm">
+<div id="login-panel" class="login" ng-style="isLogin ? '' : { 'height': '290px' } "  ng-hide="isTfaEnabled">
+    <div>{{title}}</div>
+    <div class="register_link"><a href='#' ng-click="toggle()">{{question}}</a></div>
+    <div class="login_email">
+        <div class="input-group mbxs input-group--icon" ng-class="{'input-group--error' : email_error !== ''}">
+            <div class="input-group__icon">
+                <img src="images/png/icon-envelope-gray.png">
+            </div>
+            <input class="input input-group__field" name="email" type="email" ng-model="email" value="" placeholder="{{emailPlaceholder}}" maxlength=200 required />
+            <div class="input-error">
+                <div ng-show="email_error !== ''">
+                    <div class="input-group__error">{{email_error}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="form-password">
+        <div class="input-group mbxs input-group--icon">
+            <div class="input-group__icon">
+                <img src="images/png/icon-key-gray.png">
+            </div>
+            <input class="input input-group__field" name="password" maxlength=200 ng-class="{'input-group--error' : password_error !== ''}" ng-attr-type="{{ showPassword ? 'text' : 'password' }}" ng-model="password"
+                value="" placeholder="{{passwordPlaceholder}}" required />
+            <div class="input-error">
+                <div ng-show="password_error !== ''">
+                    <div class="input-group__error">{{password_error}}</div>
+                </div>
+            </div>
+            <a id="toggle-password" ng-click="showPassword = !showPassword" class="input-group__eye-icon" ng-class="showPassword ? 'input-group__eye-icon--toggle' : ''"></a>
+        </div>
+    </div>
+    <!-- <iframe captcha src="{{url}}" /> --> 
+    <iframe captcha width="100%" scrollbar="yes" ng-show="enableCaptcha === true" id="captcha-iframe" style="border: none" src="{{url}}" />
+    <input id="captcha-key" name="captcha" type="hidden" ng-model="captcha">
+    <button class="button button--full mbs " tw-click-outside="hidePopup()" ng-click="login()">{{button}}</button>
+    <div class="registerEula" ng-hide="isLogin" translate>By proceeding, you are confirming that you have read and accepted the <a href='#' ng-click="openEula()">End User License Agreement (EULA)</a>, the <a href='#' ng-click="openTermsAndConditions()">Terms and Conditions</a> and our <a href='#' ng-click="openPrivacyAndPolicy()">Privacy Policy</a>.</div>
+</div>
+<div id="login-panel" class="login" ng-show="isTfaEnabled">
+    <div translate>Your verification code</div>
+    <div class="register_link" translate>We sent a verification code to your phone number</div>
+    <div class="login_email">
+        <div class="input-group mbxs input-group--icon" ng-class="{'input-group--error' : tfa_error !== ''}">
+            <input class="input input-group__field" style="padding-left: 10px;" name="otf" ng-model="otf" value="" placeholder="{{codePlaceholder}}" maxlength=200 ng-required="isTfaEnabled" />
+            <div class="input-error">
+                <div ng-show="tfa_error !== ''">
+                    <div class="input-group__error">{{tfa_error}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="button button--full mbs " tw-click-outside="hidePopup()" ng-click="loginWithOtp()">{{tfa_button}}</button>
+</div>
+</form>

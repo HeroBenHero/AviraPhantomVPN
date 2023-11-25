@@ -1,0 +1,24 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": "images/png/disconnected.png",
+      "default_popup": "index.html",
+      "default_title": "Avira Phantom VPN"
+   },
+   "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google.com https://www.gstatic.com https://passwords.avira.com; object-src 'self'",
+   "default_locale": "en",
+   "description": "__MSG_extDescription__",
+   "icons": {
+      "128": "images/png/vpn_icon_128.png",
+      "16": "images/png/vpn_icon_16.png",
+      "48": "images/png/vpn_icon_48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkVvoSNJXXqa5i6dxOmRAW4DngpTDkHe7cp8dNalbMyjdSdhayqSmkV0nZw6mPBC44CK0THI+FGcnUu+szXy1++/6WkmADVribb1CjLmpD82YxAtaXzfbYJSJBaCq3ec2RkSWrOgsSACf06ATsFkXUKELAI1P6KksiHFYbLm4hxjHkJBODXD+6eanIoesrMv+rd8WN8+dDlEwi12fDNfdHjiDK83RjkQgrNBTGMcb0TM5JQkJftYaQl6O9xLkQs5mXLWWUhFYM1ZhbRwHvtnDOoeQ/HgPrfcc+26Av9gNkNkRT2Hy3+1fSAyK5i6r1IPhkKN2Z6q1t+h4QLAJ423JTQIDAQAB",
+   "manifest_version": 2,
+   "name": "__MSG_extName__",
+   "permissions": [ "\u003Call_urls>", "tabs", "proxy", "storage", "webRequest", "webRequestBlocking" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.5.1"
+}
